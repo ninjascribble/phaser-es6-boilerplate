@@ -1,10 +1,13 @@
-import RainbowText from '../objects/RainbowText';
+import GameTimer from '../objects/GameTimer';
 
 class GameState extends Phaser.State {
+  preload () {
+    this.game.load.spritesheet('button', 'assets/play_pause.png', 32, 16);
+  }
+
   create () {
-    let center = { x: this.game.world.centerX, y: this.game.world.centerY };
-    let text = new RainbowText(this.game, center.x, center.y, '- phaser -\nwith some sprinklers of\nES6 dust!');
-    text.anchor.set(0.5);
+    let text = new GameTimer(this.game);
+    // text.anchor.set(0.5);
   }
 }
 
