@@ -32,7 +32,7 @@ export default class GameState extends Phaser.State {
     this.events.push(new Event(function () {
       this.logger.log('pause event');
       timer.pause();
-    }, this), 70000);
+    }, this), 71000);
   }
 
   tick () {

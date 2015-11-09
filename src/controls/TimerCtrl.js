@@ -9,9 +9,9 @@ export default class GameTimer extends Phaser.Text {
     super(game, 50, 50, '0', { font: '14px Arial', fill: '#fff', align: 'left' });
 
     this.playPauseButton = game.add.button(this.x + buttonXOffset, this.y + buttonYOffset, 'button', this.pauseResume, this, 1, 0, 2);
-    this.speed2xButton = game.add.button(this.x + 32 + buttonXOffset, this.y + buttonYOffset, '2xButton', this.set2x, this, 1, 0, 2);
-    this.speed6xButton = game.add.button(this.x + 32 + 16 + buttonXOffset, this.y + buttonYOffset, '6xButton', this.set6x, this, 1, 0, 2);
-    this.speed12xButton = game.add.button(this.x + 32 + 16 + 16 + buttonXOffset, this.y + buttonYOffset, '12xButton', this.set12x, this, 1, 0, 2);
+    this.speed2xButton = game.add.button(this.x + 32 + buttonXOffset, this.y + buttonYOffset, '2xButton', this.getClickHandler(2), this, 1, 0, 2);
+    this.speed6xButton = game.add.button(this.x + 32 + 16 + buttonXOffset, this.y + buttonYOffset, '6xButton', this.getClickHandler(6), this, 1, 0, 2);
+    this.speed12xButton = game.add.button(this.x + 32 + 16 + 16 + buttonXOffset, this.y + buttonYOffset, '12xButton', this.getClickHandler(12), this, 1, 0, 2);
 
     this.game.time.events.loop(0, this.tick, this).timer.start();
     this.game.stage.addChild(this);
@@ -26,19 +26,11 @@ export default class GameTimer extends Phaser.Text {
     }
   }
 
-  set2x () {
-    this.setMultiplier(2);
+  getClickHandler (multiplier) {
+    return () => { this.toggleMultiplier(multiplier); };
   }
 
-  set6x () {
-    this.setMultiplier(6);
-  }
-
-  set12x () {
-    this.setMultiplier(12);
-  }
-
-  setMultiplier (multiplier) {
+  toggleMultiplier (multiplier) {
     if (multiplier === timer.multiplier) {
       timer.setMultiplier(1);
     } else {
