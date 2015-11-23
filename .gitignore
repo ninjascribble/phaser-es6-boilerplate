@@ -3,3 +3,4 @@ build
 *.log
 *.tmp
 assets_raw
+.DS_Store

@@ -1,10 +1,10 @@
 import TimerCtrl from '../controls/TimerCtrl';
 
-import EventQueue from '../objects/EventQueue';
 import GameLog from '../objects/GameLog';
 import Event from '../objects/Event';
 
 import timer from '../services/timer';
+import events from '../services/eventQueue';
 
 export default class GameState extends Phaser.State {
   preload () {
@@ -16,20 +16,21 @@ export default class GameState extends Phaser.State {
 
   create () {
     timer.init(this.game);
-    this.events = new EventQueue();
+    events.init(this.game);
+
     this.gameTimer = new TimerCtrl(this.game);
     this.logger = new GameLog(this.game);
     this.game.time.events.loop(0, this.tick, this).timer.start();
 
-    this.events.push(new Event(function () {
+    events.push(new Event(function () {
       this.logger.log('5 second event');
     }, this), 5000);
 
-    this.events.push(new Event(function () {
+    events.push(new Event(function () {
       this.logger.log('50 second event');
     }, this), 50000);
 
-    this.events.push(new Event(function () {
+    events.push(new Event(function () {
       this.logger.log('pause event');
       timer.pause();
     }, this), 71000);
@@ -37,7 +38,7 @@ export default class GameState extends Phaser.State {
 
   tick () {
     // check the event queue
-    let activeEvent = this.events.getActive(timer.currentTime);
+    let activeEvent = events.getActive(timer.currentTime);
 
     if (activeEvent) {
       activeEvent.fire();
