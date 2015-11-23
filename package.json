@@ -28,6 +28,7 @@
     "yargs": "^3.16.1"
   },
   "dependencies": {
-    "phaser": "^2.4.4"
+    "phaser": "^2.4.4",
+    "phaser-plugin-text-tools": "file:../phaser-plugin-text-tools"
   }
 }

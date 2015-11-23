@@ -6,7 +6,8 @@ export default class GameTimer extends Phaser.Text {
     let buttonYOffset = 20;
     let buttonXOffset = -20;
 
-    super(game, 50, 50, '0', { font: '14px Arial', fill: '#fff', align: 'left' });
+    super(game, 50, 50, '', { font: '14px NewWiz', fill: '#00d000', align: 'left' });
+    this.game.add.existing(this);
 
     this.playPauseButton = game.add.button(this.x + buttonXOffset, this.y + buttonYOffset, 'button', this.pauseResume, this, 1, 0, 2);
     this.speed2xButton = game.add.button(this.x + 32 + buttonXOffset, this.y + buttonYOffset, '2xButton', this.getClickHandler(2), this, 1, 0, 2);
@@ -14,7 +15,6 @@ export default class GameTimer extends Phaser.Text {
     this.speed12xButton = game.add.button(this.x + 32 + 16 + 16 + buttonXOffset, this.y + buttonYOffset, '12xButton', this.getClickHandler(12), this, 1, 0, 2);
 
     this.game.time.events.loop(0, this.tick, this).timer.start();
-    this.game.stage.addChild(this);
     messenger.listen('timer:stateChanged', this.updateUI, this);
   }
 

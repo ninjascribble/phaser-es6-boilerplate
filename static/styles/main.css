@@ -13,3 +13,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+@font-face {
+  font-family: 'NewWiz';
+  src: url('/fonts/NewWiz.eot');
+  src: local('☺'),
+       url('/fonts/NewWiz.woff') format('woff'),
+       url('/fonts/NewWiz.ttf') format('truetype'),
+       url('/fonts/NewWiz.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
