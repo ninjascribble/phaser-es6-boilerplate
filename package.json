@@ -29,6 +29,6 @@
   },
   "dependencies": {
     "phaser": "^2.4.4",
-    "phaser-plugin-text-tools": "file:../phaser-plugin-text-tools"
+    "phaser-plugin-text-tools": "github:bmceldowney/phaser-plugin-text-tools"
   }
 }
